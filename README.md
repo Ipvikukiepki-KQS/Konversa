@@ -47,10 +47,18 @@ all possible data generating distributions. It means that it is not possible to 
 ### Self-Attention Mechanism
 The list of state representation produced by LSTM during composition uses the present state to compute the next state. For the present state, the next state is conditionally
 independent of states, and tokens. LSTM maintains the unbounded memory while performing the recursive update in a Markov manner. This assumption may fail while performing with long sequences due to problems in modeling structured input or lack of a mechanism to model the relations between the tokens. Thus Long Short Term Memory Network (LSTMN) can store the contextual information for each input tokens in a different memory slot. Thus,the memory size got enlarged until a maximum memory capacity has reached. The attention
-layer has induced to enable LSTMs to relate between the tokens and to perform non-Markov state updates. The read mechanism has upgraded by providing attentive linking of current tokens to the past memories and then selecting useful contents for processing the sequence. The LSTMN uses two vectors, namely, hidden state tape and a memory tape. The hidden state tape has used in computing the attention, and the memory tape represents the information that has stored in it. Thus, each token has an association with a hidden vector and a memory vector. The self-attention or intra-attention mechanism has computed using the following equation,
-a<sub>i</sub><sup>t</sup> = *v<sup>t</sup>tanh*(_w_<sub>h</sub>_h_<sub>i</sub> + _w_<sub>h</sub>_x_<sub>t</sub> + _w_<sub>h˜</sub>_h˜_<sub>t-1</sub>)
+layer has induced to enable LSTMs to relate between the tokens and to perform non-Markov state updates. The read mechanism has upgraded by providing attentive linking of current tokens to the past memories and then selecting useful contents for processing the sequence. The LSTMN uses two vectors, namely, hidden state tape and a memory tape. The hidden state tape has used in computing the attention, and the memory tape represents the information that has stored in it. Thus, each token has an association with a hidden vector and a memory vector. The self-attention or intra-attention mechanism has computed using the following equation,\
+a<sub>i</sub><sup>t</sup> = *v<sup>t</sup>tanh*(_w_<sub>h</sub>_h_<sub>i</sub> + _w_<sub>h</sub>_x_<sub>t</sub> + _w_<sub>h˜</sub>_h˜_<sub>t-1</sub>)\
+s<sub>i</sub><sup>t</sup> = *Softmax*(a<sub>i</sub><sup>t</sup>)\
+For each time step, the relation between xt and the hidden state hT has computed to determine the probability distribution for previous tokens over the hidden state vectors. Then, the vector information has determined for previously hidden tape and memory tape.\
+<p>
+    <span>&Sigma;</span>
+    k ( N - k + 1 )
+</p>
 and the architecture of self-attention mechanism has depicted below,
- h<sub>&theta;</sub>(x) = &theta;<sub>o</sub> x + &theta;<sub>1</sub>x
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Figures/ProposedWork/Architectures/Self%20Attention%20Mechanism.PNG?raw=true)
+### Sequence-to-sequence Learning
+
 ## Implementation of proposed strategy
 ### Neural Network architecture for Dialogue Management
 The proposed architecture has the goal to estimate the conditional probability, which is similar to the sequence to sequence learning architecture. But, this Encoder-decoder architecture has modified to learn progressively for incremental learning to support transfer analysis, in order to develop a model suitable for domain-specific, and also for multi-domain scenarios. The proposed neural network has LSTMs stacked upto the size of ’2’ and has adapted for transfer analysis upto three domains.\
