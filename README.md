@@ -50,15 +50,28 @@ independent of states, and tokens. LSTM maintains the unbounded memory while per
 layer has induced to enable LSTMs to relate between the tokens and to perform non-Markov state updates. The read mechanism has upgraded by providing attentive linking of current tokens to the past memories and then selecting useful contents for processing the sequence. The LSTMN uses two vectors, namely, hidden state tape and a memory tape. The hidden state tape has used in computing the attention, and the memory tape represents the information that has stored in it. Thus, each token has an association with a hidden vector and a memory vector. The self-attention or intra-attention mechanism has computed using the following equation,\
 a<sub>i</sub><sup>t</sup> = *v<sup>t</sup>tanh*(_w_<sub>h</sub>_h_<sub>i</sub> + _w_<sub>h</sub>_x_<sub>t</sub> + _w_<sub>h˜</sub>_h˜_<sub>t-1</sub>)\
 s<sub>i</sub><sup>t</sup> = *Softmax*(a<sub>i</sub><sup>t</sup>)\
-For each time step, the relation between xt and the hidden state hT has computed to determine the probability distribution for previous tokens over the hidden state vectors. Then, the vector information has determined for previously hidden tape and memory tape.\
+For each time step, the relation between x<sub>t</sub> and the hidden state h<sub>T</sub> has computed to determine the probability distribution for previous tokens over the hidden state vectors. Then, the vector information has determined for previously hidden tape and memory tape.\
 <p>
-    <span>&Sigma;</span>
-    k ( N - k + 1 )
+    h<sub>t</sub> = <span>&Sigma;</span>
+    s<sub>i</sub><sup>t</sup> h<sub>i</sub>
 </p>
-and the architecture of self-attention mechanism has depicted below,
+<p>
+    c<sub>t</sub> = <span>&Sigma;</span>
+    s<sub>i</sub><sup>t</sup> h<sub>i</sub>
+</p>
+The cell formulation of input, forget, output and Cell gates have then computed and the architecture of self-attention mechanism has depicted below,\
 ![alt text](https://github.com/Naras-KS/Konversa/blob/main/Figures/ProposedWork/Architectures/Self%20Attention%20Mechanism.PNG?raw=true)
 ### Sequence-to-sequence Learning
-
+The sequence to sequence models using LSTMs has designed to overcome the challenge faced by sequence problems of the fixed dimensionality of inputs and outputs. The key idea is to take one input sequence, reading sequence by sequence for each time step, and obtain a large fixed 3-Dimensional vector representation. The obtained vector representation has then used by another LSTM to decode a target sequence conditioned on the read input sequence. LSTMs can learn from data with long-range temporal dependencies. The architecture of the Sequence-to-sequence learning model has depicted below. The aim of LSTM in this model is to estimate the conditional probability. The length of the target sequence may differ from the length of the input sequence. The fixed dimensionality representation of a vector has computed by the hidden state of LSTM, which has then fed as the initial state for the computation of the conditional probability of the target sequence.\
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Figures/ProposedWork/Architectures/Sequence_to_sequence_Learning.PNG?raw=true)
+### Progressive Neural Network
+To learn the complex sequence of tasks, Progressive Neural Network has proposed, which has the ability to both transfer the knowledge and avoid Catastrophic Forgetting(CF) to give human-like intelligence. It has stated that CF has overcome the leverage of prior knowledge through the lateral connections, which has previously learned. The transfer of knowledge between the neural networks plays a key role in multi-taking. Hence, Progressive neural Network has proposed, which has the support for transferring the knowledge across various domains and simultaneously overcoming CF. The hidden layer connections of updated weight values from the previously learned tasks have used to extract useful features for the new task. It has helped in achieving the feature hierarchy at each layer. The continual learning remains a challenging task in machine learning, where the agents not only learn to generalize for the series of tasks that have the experience but also the ability to transfer the learned knowledge from one domain to another domain.\
+##### Adapter Function
+The hidden layers in PNN have augmented with a non-linear lateral connection, called as adapters to improve dimensionality reduction and initial conditioning. The lateral connections have multiplied by a scalar before feeding it to the network. The scalar is a small random value, which has used for different inputs to adjust the scale values. The non-linear adapter of each hidden layer is the projection of a ni dimensional sub-space. The number of parameters from the lateral connections is proportional to the chosen height of the column. Thus, the hidden layer with non-linear adapter function has given by equation as follows,\
+<p>
+    h<sub>i</sub><sup>k</sup> = <span>&sigma;</span>(
+    w<sub>i</sub><sup>k</sup> h<sub>i-1</sub><sup>k</sup> + U<sub>i</sub><sup>k:j</sup><span>&sigma;</span>(V<sub>i</sub><sup>k:j</sup><span>&alpha;</span><sub>i</sub><sup><k</sup> h<sub>i-1</sub><sup><k</sup>))
+</p>
 ## Implementation of proposed strategy
 ### Neural Network architecture for Dialogue Management
 The proposed architecture has the goal to estimate the conditional probability, which is similar to the sequence to sequence learning architecture. But, this Encoder-decoder architecture has modified to learn progressively for incremental learning to support transfer analysis, in order to develop a model suitable for domain-specific, and also for multi-domain scenarios. The proposed neural network has LSTMs stacked upto the size of ’2’ and has adapted for transfer analysis upto three domains.\
