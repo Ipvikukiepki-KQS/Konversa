@@ -14,9 +14,9 @@ The conversational agents have evaluated in a live user setting by a total of 14
 6) Conclusion
 
 ### Neural Network architecture for Dialogue Management
-![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning.pdf?raw=true)
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning.pdf)
 ### Neural Network architecture for Natural Language Generation
-![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning_with_attention.PNG?raw=true)
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning_with_attention.pdf)
 
 ##### Due to the confidential agreement with the company (regiocom SE), the source code of the novel architecture cannot be published
 
