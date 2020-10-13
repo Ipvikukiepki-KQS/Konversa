@@ -1,5 +1,4 @@
-# Konversa
-Building of conversational agents using goal-oriented dialog managers
+# Building of conversational agents using goal-oriented dialog managers (Konversa)
 
 ## Theoritical Explanation
 
