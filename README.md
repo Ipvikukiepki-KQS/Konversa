@@ -14,11 +14,19 @@ The conversational agents have evaluated in a live user setting by a total of 14
 6) Conclusion
 
 ### Neural Network architecture for Dialogue Management
-![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning.pdf)
+The proposed architecture has the goal to estimate the conditional probability, which is similar to the sequence to sequence learning architecture. But, this Encoder-decoder architecture has modified to learn progressively for incremental learning to support transfer analysis, in order to develop a model suitable for domain-specific, and also for multi-domain scenarios. The proposed neural network has LSTMs stacked upto the size of ’2’ and has adapted for transfer analysis upto three domains.\
+For the incremental learning, each upper stacked hidden layer in the succeeding column has trained not only from the previous hidden layer’s states and outputs, but also from the preceding column’s previous hidden layer outputs and states. Thus, the computation complexity increases, which is proportional to the increase in the size of the column. The current inputs used for training the succeeding column , has also fed into the LSTMs of previous columns which has frozen. By freezing the previous columns, the weight information does not get updated for the current input, but rather it utilizes the previously trained weight matrices to form the cell and hidden state outputs for the current inputs [1][5]. The proposed architecture to learn progressively for single domain or multi domain transfer analysis has depicted below. The proposed approach has also an advantage of using it for incremental learning for a single domain purpose, where the possibility of re-training the new domain-specific data becomes easier using the pre-trained old domain-specific data. This architecture has the flexibility to adapt itself for relative Multi-domain training, such that pre-trained information has its utility in the succeeding domain.
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning.PNG?raw=true)
 ### Neural Network architecture for Natural Language Generation
-![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning_with_attention.pdf)
+An attempt has made to generate the natural long sequences of sentences using an intraattention (Self-Attention) mechanism. LSTMs produces a vector state representation, such that the next state has computed based on the current state, which means that for the current state ht, the next state ht+1 conditionally independent in nature from previous states h1, ..., ht−1, and tokens x1, ..., xt. Since the update of states occurs in a Markov manner, LSTMs have assumed to summarize well for the current state for the tokens which have seen so far. It has stated that this assumption may fail, when the sequence is long [2]. The information has processed subsequently in LSTMs by a sequential order, but there are no mechanisms to relate the tokens for modelling the structured output. Thus LSTMs with intra-attention mechanism has proposed to process the contextual representation for each input token, and retaining the contextual information between the tokens to produce the structured output. The architecture of Progressive LSTM with an intra-attention Mechanism has depicted in Figure below.
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Progressive_sequence_to_sequence_learning_with_attention.PNG?raw=true)
+### Architecture overview of developed Interactive Conversational Agents
+#### Full-Automated Interactive Conversational Agent
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Full_Automated_InteractiveConversationalAgent.PNG?raw=true)
+#### Semi-Automated Interactive Conversational Agent
+![alt text](https://github.com/Naras-KS/Konversa/blob/main/Semi_Automated_InteractiveConversationalAgent.PNG?raw=true)
 
-##### Due to the confidential agreement with the company (regiocom SE), the source code of the novel architecture cannot be published
+#### Due to the confidential agreement with the company (regiocom SE), the source code of the novel architecture cannot be published
 
 ### Reference
 1) Ilya Sutskever, Oriol Vinyals, and Quoc V. Le: Sequence to Sequence Learning with Neural Networks, Proceedings of the 27th International Conference on Neural Information Processing Systems - 2:3104–3112, 2014, https://arxiv.org/pdf/1409.3215.pdf
